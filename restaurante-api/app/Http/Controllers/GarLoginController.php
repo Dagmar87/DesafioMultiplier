@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\GarLoginRequest;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class GarLoginController extends Controller
 {
 
-    public function login(GarLoginRequest $request) {
+    public function login(GarLoginRequest $request)
+    {
 
         $credentials = $request->getCredentials();
-        if(!Auth::validate($credentials)):
+        if (!Auth::validate($credentials)):
             return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));
         endif;
@@ -24,10 +23,12 @@ class GarLoginController extends Controller
 
     }
 
-    protected function authenticated(Request $request, $garcom) {
+    protected function authenticated(Request $request, $garcom)
+    {
 
         return redirect()->intended();
 
     }
 
 }
+

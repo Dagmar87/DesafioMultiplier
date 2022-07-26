@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Garcom extends Model
 {
+
+    use HasFactory;
+
     protected $table = 'garcoms';
 
     protected $fillable = ['nome', 'apelido', 'email', 'password'];

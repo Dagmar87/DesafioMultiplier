@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\CozLoginRequest;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CozLoginController extends Controller
 {
 
-    public function login(CozLoginRequest $request) {
+    public function login(CozLoginRequest $request)
+    {
 
         $credentials = $request->getCredentials();
-        if(!Auth::validate($credentials)):
+        if (!Auth::validate($credentials)):
             return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));
         endif;
@@ -24,10 +23,12 @@ class CozLoginController extends Controller
 
     }
 
-    protected function authenticated(Request $request, $cozinheiro) {
+    protected function authenticated(Request $request, $cozinheiro)
+    {
 
         return redirect()->intended();
 
     }
 
 }
+

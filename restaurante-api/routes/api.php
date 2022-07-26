@@ -8,6 +8,8 @@ use App\Http\Controllers\MesaController;
 
 use App\Http\Controllers\CardapioController;
 
+use App\Http\Controllers\PedidoController;
+
 use App\Http\Controllers\CozinheiroController;
 
 use App\Http\Controllers\GarcomController;
@@ -60,6 +62,15 @@ Route::get('garcoms/{id}', [GarcomController::class, 'getGarcom']);
 Route::post('garcoms', [GarcomController::class, 'createGarcom']);
 Route::put('garcoms/{id}', [GarcomController::class, 'updateGarcom']);
 Route::delete('garcoms/{id}', [GarcomController::class, 'deleteGarcom']);
+
+Route::get('pedidos', [PedidoController::class, 'getAllPedidos']);
+Route::get('pedidos/{id}', [PedidoController::class, 'getPedido']);
+Route::post('pedidos', [PedidoController::class, 'createPedido']);
+Route::put('pedidos/{id}', [PedidoController::class, 'updatePedido']);
+Route::delete('pedidos/{id}', [PedidoController::class, 'deletePedido']);
+Route::get('pedidos/{dataDoPedido}', [PedidoController::class, 'getPedidoByData']);
+Route::get('pedidos/{mesa_id}', [PedidoController::class, 'getPedidoByMesa']);
+Route::get('pedidos/{cliente_id}', [PedidoController::class, 'getPedidoByCliente']);
 
 Route::post('cozinheiros/login', [CozLoginController::class, 'login']);
 Route::post('garcoms/login', [GarLoginController::class, 'login']);

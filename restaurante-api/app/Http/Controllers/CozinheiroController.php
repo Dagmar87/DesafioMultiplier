@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cozinheiro;
-
 use Illuminate\Http\Request;
-
-use App\Http\Requests\CozRegisterRequest;
 
 class CozinheiroController extends Controller
 {
 
-    public function getAllCozinheiros() {
+    public function getAllCozinheiros()
+    {
 
         $cozinheiros = Cozinheiro::get()->toJson(JSON_PRETTY_PRINT);
         return response($cozinheiros, 200);
 
-      }
+    }
 
-      public function createCozinheiro(Request $request) {
+    public function createCozinheiro(Request $request)
+    {
 
         $cozinheiro = new Cozinheiro;
         $cozinheiro->nome = $request->nome;
@@ -27,25 +26,27 @@ class CozinheiroController extends Controller
         $cozinheiro->password = $request->password;
         $cozinheiro->save();
         return response()->json([
-            "message" => "registro do cozinheiro criado"
+            "message" => "registro do cozinheiro criado",
         ], 201);
 
-      }
+    }
 
-      public function getCozinheiro($id) {
+    public function getCozinheiro($id)
+    {
 
         if (Cozinheiro::where('id', $id)->exists()) {
             $cozinheiro = Cozinheiro::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
             return response($cozinheiro, 200);
-          } else {
+        } else {
             return response()->json([
-              "message" => "Cozinheiro não encontrado"
+                "message" => "Cozinheiro não encontrado",
             ], 404);
-          }
+        }
 
-      }
+    }
 
-      public function updateCozinheiro(Request $request, $id) {
+    public function updateCozinheiro(Request $request, $id)
+    {
 
         if (Cozinheiro::where('id', $id)->exists()) {
             $cozinheiro = Cozinheiro::find($id);
@@ -55,30 +56,31 @@ class CozinheiroController extends Controller
             $cozinheiro->password = is_null($request->password) ? $cozinheiro->password : $request->password;
             $cozinheiro->save();
             return response()->json([
-                "message" => "registros atualizados com sucesso"
+                "message" => "registros atualizados com sucesso",
             ], 200);
-            } else {
+        } else {
             return response()->json([
-                "message" => "Cozinheiro não encontrado"
+                "message" => "Cozinheiro não encontrado",
             ], 404);
         }
 
-      }
+    }
 
-      public function deleteCozinheiro ($id) {
+    public function deleteCozinheiro($id)
+    {
 
-        if(Cozinheiro::where('id', $id)->exists()) {
+        if (Cozinheiro::where('id', $id)->exists()) {
             $cozinheiro = Cozinheiro::find($id);
             $cozinheiro->delete();
             return response()->json([
-              "message" => "registros deletados"
+                "message" => "registros deletados",
             ], 202);
-          } else {
+        } else {
             return response()->json([
-              "message" => "Cozinheiro não encontrado"
+                "message" => "Cozinheiro não encontrado",
             ], 404);
-          }
+        }
 
-      }
+    }
 
 }

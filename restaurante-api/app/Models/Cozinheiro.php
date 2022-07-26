@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cozinheiro extends Model
 {
+
+    use HasFactory;
+
     protected $table = 'cozinheiros';
 
     protected $fillable = ['nome', 'apelido', 'email', 'password'];

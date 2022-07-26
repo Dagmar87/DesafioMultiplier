@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Garcom;
-
 use Illuminate\Http\Request;
-
-use App\Http\Requests\GarRegisterRequest;
 
 class GarcomController extends Controller
 {
 
-    public function getAllGarcoms() {
+    public function getAllGarcoms()
+    {
 
         $garcoms = Garcom::get()->toJson(JSON_PRETTY_PRINT);
         return response($garcoms, 200);
 
-      }
+    }
 
-      public function createGarcom(Request $request) {
+    public function createGarcom(Request $request)
+    {
 
         $garcom = new Garcom;
         $garcom->nome = $request->nome;
@@ -27,25 +26,27 @@ class GarcomController extends Controller
         $garcom->password = $request->password;
         $garcom->save();
         return response()->json([
-            "message" => "registro do garcom criado"
+            "message" => "registro do garcom criado",
         ], 201);
 
-      }
+    }
 
-      public function getGarcom($id) {
+    public function getGarcom($id)
+    {
 
         if (Garcom::where('id', $id)->exists()) {
             $garcom = Garcom::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
             return response($garcom, 200);
-          } else {
+        } else {
             return response()->json([
-              "message" => "Garcom não encontrado"
+                "message" => "Garcom não encontrado",
             ], 404);
-          }
+        }
 
-      }
+    }
 
-      public function updateGarcom(Request $request, $id) {
+    public function updateGarcom(Request $request, $id)
+    {
 
         if (Garcom::where('id', $id)->exists()) {
             $garcom = Garcom::find($id);
@@ -55,30 +56,32 @@ class GarcomController extends Controller
             $garcom->password = is_null($request->password) ? $garcom->password : $request->password;
             $garcom->save();
             return response()->json([
-                "message" => "registros atualizados com sucesso"
+                "message" => "registros atualizados com sucesso",
             ], 200);
-            } else {
+        } else {
             return response()->json([
-                "message" => "Garcom não encontrado"
+                "message" => "Garcom não encontrado",
             ], 404);
         }
 
-      }
+    }
 
-      public function deleteGarcom ($id) {
+    public function deleteGarcom($id)
+    {
 
-        if(Garcom::where('id', $id)->exists()) {
+        if (Garcom::where('id', $id)->exists()) {
             $garcom = Garcom::find($id);
             $garcom->delete();
             return response()->json([
-              "message" => "registros deletados"
+                "message" => "registros deletados",
             ], 202);
-          } else {
+        } else {
             return response()->json([
-              "message" => "Garcom não encontrado"
+                "message" => "Garcom não encontrado",
             ], 404);
-          }
+        }
 
-      }
+    }
 
 }
+

@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Session;
-
 
 class GarLogoutController extends Controller
 {
 
-    public function perform() {
+    public function perform()
+    {
 
         Session::flush();
 
@@ -23,3 +20,4 @@ class GarLogoutController extends Controller
     }
 
 }
+

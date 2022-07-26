@@ -47,7 +47,6 @@ class ClienteController extends Controller
             $cliente->nome = is_null($request->nome) ? $cliente->nome : $request->nome;
             $cliente->cpf = is_null($request->cpf) ? $cliente->cpf : $request->cpf;
             $cliente->save();
-
             return response()->json([
                 "message" => "registros atualizados com sucesso"
             ], 200);
@@ -55,7 +54,6 @@ class ClienteController extends Controller
             return response()->json([
                 "message" => "Cliente não encontrado"
             ], 404);
-
         }
 
       }
@@ -65,7 +63,6 @@ class ClienteController extends Controller
         if(Cliente::where('id', $id)->exists()) {
             $cliente = Cliente::find($id);
             $cliente->delete();
-
             return response()->json([
               "message" => "registros deletados"
             ], 202);

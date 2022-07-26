@@ -8,6 +8,18 @@ use App\Http\Controllers\MesaController;
 
 use App\Http\Controllers\CardapioController;
 
+use App\Http\Controllers\CozinheiroController;
+
+use App\Http\Controllers\GarcomController;
+
+use App\Http\Controllers\CozLoginController;
+
+use App\Http\Controllers\GarLoginController;
+
+use App\Http\Controllers\CozLogoutController;
+
+use App\Http\Controllers\GarLogoutController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +48,23 @@ Route::get('cardapios/{id}', [CardapioController::class, 'getItem']);
 Route::post('cardapios', [CardapioController::class, 'createItem']);
 Route::put('cardapios/{id}', [CardapioController::class, 'updateItem']);
 Route::delete('cardapios/{id}', [CardapioController::class, 'deleteItem']);
+
+Route::get('cozinheiros', [CozinheiroController::class, 'getAllCozinheiros']);
+Route::get('cozinheiros/{id}', [CozinheiroController::class, 'getCozinheiro']);
+Route::post('cozinheiros', [CozinheiroController::class, 'createCozinheiro']);
+Route::put('cozinheiros/{id}', [CozinheiroController::class, 'updateCozinheiro']);
+Route::delete('cozinheiros/{id}', [CozinheiroController::class, 'deleteCozinheiro']);
+
+Route::get('garcoms', [GarcomController::class, 'getAllGarcoms']);
+Route::get('garcoms/{id}', [GarcomController::class, 'getGarcom']);
+Route::post('garcoms', [GarcomController::class, 'createGarcom']);
+Route::put('garcoms/{id}', [GarcomController::class, 'updateGarcom']);
+Route::delete('garcoms/{id}', [GarcomController::class, 'deleteGarcom']);
+
+Route::post('cozinheiros/login', [CozLoginController::class, 'login']);
+Route::post('garcoms/login', [GarLoginController::class, 'login']);
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('cozinheiros/logout', [CozLogoutController::class, 'perform']);
+    Route::get('garcoms/logout', [GarLogoutController::class, 'perform']);
+});
